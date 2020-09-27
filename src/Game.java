@@ -13,7 +13,8 @@ public class Game {
 		deck.shuffle();
 	}
 	
-	public void addPlayer(UserPlayer player) {
+	public void addPlayer(String name) {
+		UserPlayer player = new UserPlayer(name);
 		players.add(player);
 		player.addToGame(this);
 	}
