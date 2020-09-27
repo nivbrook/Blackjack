@@ -1,11 +1,10 @@
 import java.util.LinkedList;
 
-public class Player {
-	private String name;
+public abstract class Player {
+	protected String name;
 	private LinkedList<Card> hand;
 	
-	public Player(String name) {
-		this.name = name;
+	public Player() {
 		hand = new LinkedList<Card>();
 	}
 	
@@ -13,9 +12,8 @@ public class Player {
 		hand.clear();
 	}
 	
-	public boolean addCard(Card card) {
+	public void addCard(Card card) {
 		hand.add(card);
-		return (getHandSum() <= 21);
 	}
 	
 	public int getHandSum() {
@@ -51,4 +49,6 @@ public class Player {
 			}
 		}
 	}
+	
+	public abstract boolean playTurn();
 }
