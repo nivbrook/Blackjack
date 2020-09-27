@@ -23,7 +23,7 @@ public class Game {
 	}
 	
 	public void playRound() {
-		boolean[] results = new boolean[players.size()];
+		boolean[] busts = new boolean[players.size()];
 		boolean allBusts = true;
 		for (int i = 0; i<2; i++) {
 			dealCard(dealer);
@@ -38,8 +38,8 @@ public class Game {
 		}
 		
 		for (int i = 0; i < players.size(); i++) {
-			results[i] = players.get(i).playTurn();
-			if (!results[i]) allBusts = false;
+			busts[i] = players.get(i).playTurn();
+			if (!busts[i]) allBusts = false;
 		}
 		
 		dealer.printHand(true);
@@ -49,13 +49,13 @@ public class Game {
 		}
 		
 		if(dealer.playTurn()) {
-			System.out.println("Payout!");
+			System.out.print("Payout!");
 			return;
 		}
 		int dealerScore = dealer.getHandSum();
 		
 		for (int i = 0; i < players.size(); i++) {
-			if (!results[i]) {
+			if (!busts[i]) {
 				if (players.get(i).getHandSum()>dealerScore) {
 					System.out.println(players.get(i).getName() + " wins!");
 				} else if (players.get(i).getHandSum() == dealerScore){
